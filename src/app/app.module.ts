@@ -3,21 +3,27 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
+import {HttpModule} from '@angular/http';
 
 import {MyApp} from './app.component';
 
 import {UsersPage} from '../pages/users/users';
 import {ReposPage} from '../pages/repos/repos';
 import {OrganizationsPage} from '../pages/organizations/organizations';
+import {UserDetailsPage} from "../pages/user-details/user-details";
+
+import {GithubUsersProvider} from '../providers/github-users/github-users';
 
 @NgModule({
   declarations: [
     MyApp,
     UsersPage,
     ReposPage,
-    OrganizationsPage
+    OrganizationsPage,
+    UserDetailsPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -26,12 +32,14 @@ import {OrganizationsPage} from '../pages/organizations/organizations';
     MyApp,
     UsersPage,
     ReposPage,
-    OrganizationsPage
+    OrganizationsPage,
+    UserDetailsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GithubUsersProvider
   ]
 })
 export class AppModule {

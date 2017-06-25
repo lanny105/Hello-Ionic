@@ -16,6 +16,14 @@
 </ion-header>
 
 
-<ion-content padding>
-  <h3>User View Page</h3>
+<ion-content>
+  <ion-searchbar (input)="search($event)"></ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let user of users" (click)="showDetails(user.login)">
+      <ion-avatar item-left>
+        <img [src]="user.avatar_url">
+      </ion-avatar>
+      <h2>{{ user.login }}</h2>
+    </button>
+  </ion-list>
 </ion-content>
